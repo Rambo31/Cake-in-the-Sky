@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Add to webroot/.htaccess to prevent CakePHP from handling static assets
+RewriteCond %{REQUEST_URI} !^/(webroot/)?(img|css|js)/(.*)$
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+</IfModule>
