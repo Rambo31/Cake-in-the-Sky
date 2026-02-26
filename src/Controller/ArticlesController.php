@@ -1,7 +1,4 @@
 <?php
-// src/Controller/ArticlesController.php
-declare(strict_types=1);
-
 namespace App\Controller;
 
 class ArticlesController extends AppController
@@ -18,7 +15,7 @@ class ArticlesController extends AppController
         $this->set(compact('article'));
     }
 
-    public function add(): void
+    public function add()
     {
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
@@ -38,7 +35,7 @@ class ArticlesController extends AppController
         $this->set('article', $article);
     }
 
-    public function edit(?string $slug): void
+    public function edit(?string $slug)
     {
         $article = $this->Articles
                         ->findBySlug($slug)
