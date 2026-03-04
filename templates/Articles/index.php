@@ -1,4 +1,4 @@
-<!-- File: templates/Articles/index.php  (edit links added) -->
+<!-- File: templates/Articles/index.php -->
 
 <h1>Articles</h1>
 <p><?= $this->Html->link("Add Article", ['action' => 'add']) ?></p>
@@ -21,6 +21,11 @@
         </td>
         <td>
             <?= $this->Html->link('Edit', ['action' => 'edit', $article->slug]) ?>
+            <?= $this->Form->deleteLink(
+                'Delete',
+                ['action' => 'delete', $article->slug],
+                ['confirm' => 'Are you sure?'])
+            ?>
         </td>
     </tr>
 <?php endforeach; ?>

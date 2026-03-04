@@ -18,7 +18,7 @@ class ArticlesController extends AppController
     public function add()
     {
         $article = $this->Articles->newEmptyEntity();
-        if ($this->request->is('post')) {
+        if ($this->request->is('post')) { //for saving form's data
             $article = $this->Articles->patchEntity($article, $this->request->getData());
 
             // Hardcoding the user_id is temporary, and will be removed later
@@ -32,7 +32,7 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('Unable to add your article.'));
         }
-        $this->set('article', $article);
+        $this->set('article', $article); //for rendering empty form
     }
 
     public function edit(?string $slug)
@@ -52,5 +52,17 @@ class ArticlesController extends AppController
         }
 
         $this->set('article', $article);
+    }
+
+    public function delete(?string $slug)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+
+        $article = $this->Articles->findBySlug($slug)->firstOrFail();
+        if ($this->Articles->delete($article)) {
+            $this->Flash->success(__('The {0} article has been deleted.', $article->title));
+
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }
