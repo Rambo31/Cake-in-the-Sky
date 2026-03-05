@@ -62,6 +62,13 @@ return function (RouteBuilder $routes): void {
          */
         $builder->connect('/pages/*', 'Pages::display');
 
+        // New route we're adding for our tagged action.
+        // The trailing `*` tells CakePHP that this action has
+        // passed parameters.
+        $builder->scope('/articles', function (RouteBuilder $builder) {
+            $builder->connect('/tagged/*', ['controller' => 'Articles', 'action' => 'tags']);
+        });
+
         /*
          * Connect catchall routes for all controllers.
          *
