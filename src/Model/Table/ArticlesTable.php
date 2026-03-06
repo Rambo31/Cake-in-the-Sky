@@ -16,11 +16,19 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
         $this->addBehavior('Timestamp'); //populate created and modified DATETIME fields
-        $this->belongsToMany('Tags'); //an association between Articles and Tags
+
+        $this->belongsToMany('Tags', [
+            'joinTable' => 'articles_tags',
+            'dependent' => true,
+        ]);
     }
 
     public function beforeSave(EventInterface $event, $entity, $options): void
     {
+        if ($entity->tag_string) {
+            $entity->tags = $this->_buildTags($entity->tag_string);
+        }
+
         if ($entity->isNew() && !$entity->slug) {
             $sluggedTitle = Text::slug($entity->title);
             // trim slug to maximum length defined in schema
@@ -39,6 +47,39 @@ class ArticlesTable extends Table
             ->minLength('body', 10);
 
         return $validator;
+    }
+
+    protected function _buildTags(string $tagString): array
+    {
+        // Trim tags
+        $newTags = array_map('trim', explode(',', $tagString));
+        // Remove all empty tags
+        $newTags = array_filter($newTags);
+        // Reduce duplicated tags
+        $newTags = array_unique($newTags);
+
+        $out = [];
+        $tags = $this->Tags->find()
+                           ->where(['Tags.title IN' => $newTags])
+                           ->all();
+
+        // Remove existing tags from the list of new tags.
+        foreach ($tags->extract('title') as $existing) {
+            $index = array_search($existing, $newTags);
+            if ($index !== false) {
+                unset($newTags[$index]);
+            }
+        }
+        // Add existing tags.
+        foreach ($tags as $tag) {
+            $out[] = $tag;
+        }
+        // Add new tags.
+        foreach ($newTags as $tag) {
+            $out[] = $this->Tags->newEntity(['title' => $tag]);
+        }
+
+        return $out;
     }
 
     // The $query argument is a query builder instance.

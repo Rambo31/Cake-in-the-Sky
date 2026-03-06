@@ -11,7 +11,10 @@ class ArticlesController extends AppController
 
     public function view(?string $slug): void
     {
-        $article = $this->Articles->findBySlug($slug)->firstOrFail(); //query
+        $article = $this->Articles
+                        ->findBySlug($slug)
+                        ->contain('Tags')
+                        ->firstOrFail(); //query
         $this->set(compact('article'));
     }
 
