@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Users Controller
+ * Accounts Controller
  *
  * @property \App\Model\Table\UsersTable $Users
  */
-class UsersController extends AppController
+class AccountsController extends AppController
 {
     /**
      * Index method
@@ -52,7 +52,7 @@ class UsersController extends AppController
     {
         $this->Authorization->skipAuthorization();
         $this->Authentication->logout();
-        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        return $this->redirect(['controller' => 'Accounts', 'action' => 'login']);
     }
 
     /**

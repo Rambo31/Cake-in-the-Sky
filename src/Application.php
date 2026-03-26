@@ -146,7 +146,7 @@ class Application extends BaseApplication
             'unauthenticatedRedirect' => [
                 'prefix' => false,
                 'plugin' => null,
-                'controller' => 'Users',
+                'controller' => 'Accounts',
                 'action' => 'login',
             ],
             'queryParam' => 'redirect',
@@ -164,7 +164,7 @@ class Application extends BaseApplication
             'loginUrl' => [
                 'prefix' => false,
                 'plugin' => null,
-                'controller' => 'Users',
+                'controller' => 'Accounts',
                 'action' => 'login',
             ],
             'identifier' => [
