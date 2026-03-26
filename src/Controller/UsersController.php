@@ -28,7 +28,7 @@ class UsersController extends AppController
         parent::beforeFilter($event);
         // Configure the login action to not require authentication, preventing
         // the infinite redirect loop issue
-        $this->Authentication->allowUnauthenticated(['login', 'add']);
+        $this->Authentication->allowUnauthenticated(['login', 'register']);
     }
 
     public function login()
@@ -69,11 +69,11 @@ class UsersController extends AppController
     }
 
     /**
-     * Add method
+     * Register method
      *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @return \Cake\Http\Response|null|void Redirects on successful register, renders view otherwise.
      */
-    public function add()
+    public function register()
     {
         $this->Authorization->skipAuthorization();
         $user = $this->Users->newEmptyEntity();
