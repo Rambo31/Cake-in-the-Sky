@@ -27,7 +27,7 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) { //for saving form's data
             $article = $this->Articles->patchEntity($article, $this->request->getData());
 
-            $article->user_id = $this->request->getAttribute('identity')->getIdentifier();
+            $article->account_id = $this->request->getAttribute('identity')->getIdentifier();
 
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('Your article has been saved.'));
@@ -54,8 +54,8 @@ class ArticlesController extends AppController
 
         if ($this->request->is(['post', 'put'])) {
             $this->Articles->patchEntity($article, $this->request->getData(), [
-                // Added: Disable modification of user_id.
-                'accessibleFields' => ['user_id' => false],
+                // Added: Disable modification of account_id.
+                'accessibleFields' => ['account_id' => false],
             ]);
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('Your article has been updated.'));

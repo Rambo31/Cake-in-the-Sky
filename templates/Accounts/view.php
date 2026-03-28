@@ -1,43 +1,43 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var \App\Model\Entity\Account $account
  */
 ?>
 <div class="row">
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Account'), ['action' => 'edit', $account->id], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->postLink(__('Delete Account'), ['action' => 'delete', $account->id], ['confirm' => __('Are you sure you want to delete # {0}?', $account->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Accounts'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('New Account'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
-        <div class="users view content">
-            <h3><?= h($user->email) ?></h3>
+        <div class="accounts view content">
+            <h3><?= h($account->email) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Email') ?></th>
-                    <td><?= h($user->email) ?></td>
+                    <td><?= h($account->email) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($user->id) ?></td>
+                    <td><?= $this->Number->format($account->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Created') ?></th>
-                    <td><?= h($user->created) ?></td>
+                    <td><?= h($account->created) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified') ?></th>
-                    <td><?= h($user->modified) ?></td>
+                    <td><?= h($account->modified) ?></td>
                 </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Articles') ?></h4>
-                <?php if (!empty($user->articles)) : ?>
+                <?php if (!empty($account->articles)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -50,7 +50,7 @@
                             <th><?= __('Modified') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($user->articles as $article) : ?>
+                        <?php foreach ($account->articles as $article) : ?>
                         <tr>
                             <td><?= h($article->id) ?></td>
                             <td><?= h($article->title) ?></td>

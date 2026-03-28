@@ -7,7 +7,7 @@ use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * Account Entity
  *
  * @property int $id
  * @property string $email
@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Article[] $articles
  */
-class User extends Entity
+class Account extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

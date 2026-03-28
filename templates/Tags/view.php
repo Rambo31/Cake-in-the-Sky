@@ -42,7 +42,7 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('User Id') ?></th>
+                            <th><?= __('Account Id') ?></th>
                             <th><?= __('Title') ?></th>
                             <th><?= __('Slug') ?></th>
                             <th><?= __('Body') ?></th>
@@ -54,7 +54,7 @@
                         <?php foreach ($tag->articles as $article) : ?>
                         <tr>
                             <td><?= h($article->id) ?></td>
-                            <td><?= h($article->user_id) ?></td>
+                            <td><?= h($article->account_id) ?></td>
                             <td><?= h($article->title) ?></td>
                             <td><?= h($article->slug) ?></td>
                             <td><?= h($article->body) ?></td>

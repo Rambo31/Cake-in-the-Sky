@@ -10,7 +10,7 @@ use Cake\Collection\Collection;
  * Article Entity
  *
  * @property int $id
- * @property int $user_id
+ * @property int $account_id
  * @property string $title
  * @property string $slug
  * @property string|null $body
@@ -30,7 +30,7 @@ class Article extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'user_id' => true,
+        'account_id' => true,
         'title' => true,
         'slug' => true,
         'body' => true,

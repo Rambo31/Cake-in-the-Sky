@@ -1,4 +1,4 @@
-<div class="users form content">
+<div class="accounts form content">
     <?= $this->Flash->render() ?>
     <h3>Login</h3>
     <?= $this->Form->create() ?>
@@ -10,5 +10,5 @@
     <?= $this->Form->button(__('Login')); ?>
     <?= $this->Form->end() ?>
 
-    <?= $this->Html->link("Add User", ['action' => 'add']) ?>
+    <?= $this->Html->link("Add Account", ['action' => 'add']) ?>
 </div>

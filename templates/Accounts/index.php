@@ -1,12 +1,12 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\App\Model\Entity\User> $users
+ * @var iterable<\App\Model\Entity\Account> $accounts
  */
 ?>
-<div class="users index content">
-    <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Users') ?></h3>
+<div class="accounts index content">
+    <?= $this->Html->link(__('New Account'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Accounts') ?></h3>
     <div class="table-responsive">
         <table>
             <thead>
@@ -19,21 +19,21 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user): ?>
+                <?php foreach ($accounts as $account): ?>
                 <tr>
-                    <td><?= $this->Number->format($user->id) ?></td>
-                    <td><?= h($user->email) ?></td>
-                    <td><?= h($user->created) ?></td>
-                    <td><?= h($user->modified) ?></td>
+                    <td><?= $this->Number->format($account->id) ?></td>
+                    <td><?= h($account->email) ?></td>
+                    <td><?= h($account->created) ?></td>
+                    <td><?= h($account->modified) ?></td>
                     <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $account->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $account->id]) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
-                            ['action' => 'delete', $user->id],
+                            ['action' => 'delete', $account->id],
                             [
                                 'method' => 'delete',
-                                'confirm' => __('Are you sure you want to delete # {0}?', $user->id),
+                                'confirm' => __('Are you sure you want to delete # {0}?', $account->id),
                             ]
                         ) ?>
                     </td>

@@ -88,7 +88,7 @@ class ArticlesTable extends Table
     public function findTagged(SelectQuery $query, array $tags = []): SelectQuery
     {
         $columns = [
-            'Articles.id', 'Articles.user_id', 'Articles.title',
+            'Articles.id', 'Articles.account_id', 'Articles.title',
             'Articles.body', 'Articles.published', 'Articles.created',
             'Articles.slug',
         ];

@@ -12,46 +12,46 @@ use Authorization\IdentityInterface;
 class ArticlePolicy
 {
     /**
-     * Check if $user can add Article
+     * Check if $account can add Article
      *
-     * @param \Authorization\IdentityInterface $user The user.
+     * @param \Authorization\IdentityInterface $account The account.
      * @param \App\Model\Entity\Article $article
      * @return bool
      */
-    public function canAdd(IdentityInterface $user, Article $article)
+    public function canAdd(IdentityInterface $account, Article $article)
     {
-        // All logged in users can create articles.
+        // All logged in accounts can create articles.
         return true;
     }
 
     /**
-     * Check if $user can edit Article
+     * Check if $account can edit Article
      *
-     * @param \Authorization\IdentityInterface $user The user.
+     * @param \Authorization\IdentityInterface $account The account.
      * @param \App\Model\Entity\Article $article
      * @return bool
      */
-    public function canEdit(IdentityInterface $user, Article $article)
+    public function canEdit(IdentityInterface $account, Article $article)
     {
-        // logged in users can edit their own articles.
-        return $this->isAuthor($user, $article);
+        // logged in accounts can edit their own articles.
+        return $this->isAuthor($account, $article);
     }
 
     /**
-     * Check if $user can delete Article
+     * Check if $account can delete Article
      *
-     * @param \Authorization\IdentityInterface $user The user.
+     * @param \Authorization\IdentityInterface $account The account.
      * @param \App\Model\Entity\Article $article
      * @return bool
      */
-    public function canDelete(IdentityInterface $user, Article $article)
+    public function canDelete(IdentityInterface $account, Article $article)
     {
-        // logged in users can delete their own articles.
-        return $this->isAuthor($user, $article);
+        // logged in accounts can delete their own articles.
+        return $this->isAuthor($account, $article);
     }
 
-    protected function isAuthor(IdentityInterface $user, Article $article): bool
+    protected function isAuthor(IdentityInterface $account, Article $article): bool
     {
-        return $article->user_id === $user->getIdentifier();
+        return $article->account_id === $account->getIdentifier();
     }
 }
