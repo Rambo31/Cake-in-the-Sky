@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
 /**
  * Accounts Model
  *
- * @property \App\Model\Table\ArticlesTable&\Cake\ORM\Association\HasMany $Articles
- *
  * @method \App\Model\Entity\Account newEmptyEntity()
  * @method \App\Model\Entity\Account newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Account> newEntities(array $data, array $options = [])
@@ -44,12 +42,7 @@ class AccountsTable extends Table
         $this->setTable('accounts');
         $this->setDisplayField('email');
         $this->setPrimaryKey('id');
-
         $this->addBehavior('Timestamp');
-
-        $this->hasMany('Articles', [
-            'foreignKey' => 'account_id',
-        ]);
     }
 
     /**

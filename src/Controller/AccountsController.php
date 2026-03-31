@@ -38,7 +38,7 @@ class AccountsController extends AppController
         // If the account is logged in send them away.
         if ($result && $result->isValid()) {
             $target = $this->Authentication->getLoginRedirect() ?? [
-                'controller' => 'Articles',
+                'controller' => 'Accounts',
                 'action' => 'index',
             ];
             return $this->redirect($target);
@@ -64,7 +64,7 @@ class AccountsController extends AppController
      */
     public function view($id = null)
     {
-        $account = $this->Accounts->get($id, contain: ['Articles']);
+        $account = $this->Accounts->get($id);
         $this->set(compact('account'));
     }
 

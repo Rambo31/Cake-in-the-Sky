@@ -35,48 +35,6 @@
                     <td><?= h($account->modified) ?></td>
                 </tr>
             </table>
-            <div class="related">
-                <h4><?= __('Related Articles') ?></h4>
-                <?php if (!empty($account->articles)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Title') ?></th>
-                            <th><?= __('Slug') ?></th>
-                            <th><?= __('Body') ?></th>
-                            <th><?= __('Published') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($account->articles as $article) : ?>
-                        <tr>
-                            <td><?= h($article->id) ?></td>
-                            <td><?= h($article->title) ?></td>
-                            <td><?= h($article->slug) ?></td>
-                            <td><?= h($article->body) ?></td>
-                            <td><?= h($article->published) ?></td>
-                            <td><?= h($article->created) ?></td>
-                            <td><?= h($article->modified) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Articles', 'action' => 'view', $article->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Articles', 'action' => 'edit', $article->id]) ?>
-                                <?= $this->Form->postLink(
-                                    __('Delete'),
-                                    ['controller' => 'Articles', 'action' => 'delete', $article->id],
-                                    [
-                                        'method' => 'delete',
-                                        'confirm' => __('Are you sure you want to delete # {0}?', $article->id),
-                                    ]
-                                ) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
         </div>
     </div>
 </div>
