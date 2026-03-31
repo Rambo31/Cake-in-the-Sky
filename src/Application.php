@@ -36,12 +36,6 @@ use Authentication\Identifier\PasswordIdentifier;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Psr\Http\Message\ServerRequestInterface;
 
-use Authorization\AuthorizationService;
-use Authorization\AuthorizationServiceInterface;
-use Authorization\AuthorizationServiceProviderInterface;
-use Authorization\Middleware\AuthorizationMiddleware;
-use Authorization\Policy\OrmResolver;
-
 /**
  * Application setup class.
  *
@@ -51,8 +45,7 @@ use Authorization\Policy\OrmResolver;
  * @extends \Cake\Http\BaseApplication<\App\Application>
  */
 class Application extends BaseApplication
-    implements AuthenticationServiceProviderInterface,
-    AuthorizationServiceProviderInterface
+    implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -66,7 +59,6 @@ class Application extends BaseApplication
 
         // By default, does not allow fallback classes.
         FactoryLocator::add('Table', (new TableLocator())->allowFallbackClass(false));
-        $this->addPlugin('Authorization');
     }
 
     /**
@@ -104,8 +96,7 @@ class Application extends BaseApplication
                 'httponly' => true,
             ]))
             // Add the AuthenticationMiddleware. It should be after routing and body parser.
-            ->add(new AuthenticationMiddleware($this))
-            ->add(new AuthorizationMiddleware($this));
+            ->add(new AuthenticationMiddleware($this));
 
         return $middlewareQueue;
     }
@@ -174,12 +165,5 @@ class Application extends BaseApplication
         ]);
 
         return $service;
-    }
-
-    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
-    {
-        $resolver = new OrmResolver();
-
-        return new AuthorizationService($resolver);
     }
 }

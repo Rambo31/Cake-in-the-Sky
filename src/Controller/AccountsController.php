@@ -33,7 +33,6 @@ class AccountsController extends AppController
 
     public function login()
     {
-        $this->Authorization->skipAuthorization();
         $result = $this->Authentication->getResult();
         // If the account is logged in send them away.
         if ($result && $result->isValid()) {
@@ -50,7 +49,6 @@ class AccountsController extends AppController
 
     public function logout()
     {
-        $this->Authorization->skipAuthorization();
         $this->Authentication->logout();
         return $this->redirect(['controller' => 'Accounts', 'action' => 'login']);
     }
@@ -75,7 +73,6 @@ class AccountsController extends AppController
      */
     public function register()
     {
-        $this->Authorization->skipAuthorization();
         $account = $this->Accounts->newEmptyEntity();
         if ($this->request->is('post')) {
             $account = $this->Accounts->patchEntity($account, $this->request->getData());
