@@ -29,13 +29,6 @@ use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
-use Authentication\AuthenticationService;
-use Authentication\AuthenticationServiceInterface;
-use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\PasswordIdentifier;
-use Authentication\Middleware\AuthenticationMiddleware;
-use Psr\Http\Message\ServerRequestInterface;
-
 /**
  * Application setup class.
  *
@@ -45,7 +38,6 @@ use Psr\Http\Message\ServerRequestInterface;
  * @extends \Cake\Http\BaseApplication<\App\Application>
  */
 class Application extends BaseApplication
-    implements AuthenticationServiceProviderInterface
 {
     /**
      * Load all the application configuration and bootstrap logic.
@@ -94,9 +86,7 @@ class Application extends BaseApplication
             // https://book.cakephp.org/5/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
-            ]))
-            // Add the AuthenticationMiddleware. It should be after routing and body parser.
-            ->add(new AuthenticationMiddleware($this));
+            ]));
 
         return $middlewareQueue;
     }
@@ -128,42 +118,4 @@ class Application extends BaseApplication
         return $eventManager;
     }
 
-    public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
-    {
-        $service = new AuthenticationService();
-
-        // Define where users should be redirected to when they are not authenticated
-        $service->setConfig([
-            'unauthenticatedRedirect' => [
-                'prefix' => false,
-                'plugin' => null,
-                'controller' => 'Accounts',
-                'action' => 'login',
-            ],
-            'queryParam' => 'redirect',
-        ]);
-
-        $fields = [
-            PasswordIdentifier::CREDENTIAL_USERNAME => 'email',
-            PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
-        ];
-
-        // Load the authenticators. Session should be first.
-        $service->loadAuthenticator('Authentication.Session');
-        $service->loadAuthenticator('Authentication.Form', [
-            'fields' => $fields,
-            'loginUrl' => [
-                'prefix' => false,
-                'plugin' => null,
-                'controller' => 'Accounts',
-                'action' => 'login',
-            ],
-            'identifier' => [
-                'className' => 'Authentication.Password',
-                'fields' => $fields,
-            ],
-        ]);
-
-        return $service;
-    }
 }

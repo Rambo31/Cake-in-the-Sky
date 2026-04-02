@@ -23,36 +23,6 @@ class AccountsController extends AppController
         $this->set(compact('accounts'));
     }
 
-    public function beforeFilter(\Cake\Event\EventInterface $event): void
-    {
-        parent::beforeFilter($event);
-        // Configure the login action to not require authentication, preventing
-        // the infinite redirect loop issue
-        $this->Authentication->allowUnauthenticated(['login', 'register']);
-    }
-
-    public function login()
-    {
-        $result = $this->Authentication->getResult();
-        // If the account is logged in send them away.
-        if ($result && $result->isValid()) {
-            $target = $this->Authentication->getLoginRedirect() ?? [
-                'controller' => 'Accounts',
-                'action' => 'index',
-            ];
-            return $this->redirect($target);
-        }
-        if ($this->request->is('post')) {
-            $this->Flash->error(__('Invalid username or password'));
-        }
-    }
-
-    public function logout()
-    {
-        $this->Authentication->logout();
-        return $this->redirect(['controller' => 'Accounts', 'action' => 'login']);
-    }
-
     /**
      * View method
      *
