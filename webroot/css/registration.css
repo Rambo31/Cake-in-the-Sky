@@ -1,16 +1,22 @@
 /* translate absolute values to relative onces */
-legend{
-    font-size: 24px;
+.reg-form{
 }
-.colorful-line{
+.reg-form__legend{
+    font-size: 2rem;
+}
+/* I have one line here, so I dont need to divide into common styles/mods */
+.reg-form__line{
     border-color: red;
     border-width: 2px;
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
-
-.inverted-colors-btn{
+.reg-form__btn{
+}
+.reg-form__btn--inverted-classic-colors{
     background-color: #fff;
     color: #d33c43;
-    border-width: 0.2rem;
+}
+.reg-form__btn--thickened-border{
+    border-width: 2px;
 }

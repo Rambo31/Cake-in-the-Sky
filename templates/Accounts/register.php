@@ -3,39 +3,42 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Account $account
  */
+echo $this->Html->css("registration.css");
 ?>
-<html>
-    <head>
-        <?php echo $this->Html->css("registration.css"); ?>
-    </head>
-    <body>
-        <div class="row">
-            <div class="column column-50">
-                <div class="accounts form content">
-                    <?= $this->Form->create($account) ?>
-                    <fieldset>
-                        <legend>
-                            <?= __('Master Account Register') ?>
-                        </legend>
-                        <hr class='colorful-line'>
-                        <?php
-                            echo $this->Form->control('email');
-                            echo $this->Form->control('password');
-                            echo $this->Form->control('confirm password');
-                            echo $this->Form->control('birth day');
-                            echo $this->Form->control('I agree to be bound by Terms of Service', ['type' => 'checkbox']);
-                            echo $this->Form->control('Capcha', ['type' => 'checkbox']);
-                        ?>
-                    </fieldset>
-                    <?= $this->Form->button(__('Register')) ?>
-                    <?= $this->Html->link(
-                        'Cancel',
-                        '/accounts', //accounts/login later
-                        ['class' => 'button inverted-colors-btn']
-                    ) ?>
-                    <?= $this->Form->end() ?>
-                </div>
-            </div>
+<div class="row">
+    <div class="column column-50">
+        <div class="accounts form content reg-form">
+            <?= $this->Form->create($account) ?>
+            <fieldset>
+                <legend class='reg-form__legend'>
+                    <?= __('Master Account Register') ?>
+                </legend>
+                <hr class='reg-form__line'>
+                <?php
+                    echo $this->Form->control('email', ['type' => 'email']);
+                    echo $this->Form->control('password', ['type' => 'password']);
+                    echo $this->Form->control('confirm password', ['type' => 'password']);
+                    echo $this->Form->control('birthdate', [
+                        'label' => 'Date of birth',
+                        'type' => 'date',
+                        'value' => new DateTime()
+                    ]);
+                    echo $this->Form->control('I agree to be bound by Terms of Service', ['type' => 'checkbox']);
+                    echo $this->Form->control('Capcha', ['type' => 'checkbox']);
+                ?>
+            </fieldset>
+            <?= $this->Form->button(__('Register')) ?>
+            <?= $this->Html->link(
+                'Cancel',
+                '/accounts', //it should redirect to accounts/login later
+                ['class' => '
+                    button
+                    reg-form__btn
+                    reg-form__btn--inverted-classic-colors
+                    reg-form__btn--thickened-border'
+                ]
+            ) ?>
+            <?= $this->Form->end() ?>
         </div>
-    </body>
-</html>
+    </div>
+</div>
