@@ -25,6 +25,10 @@
                     <th><?= __('Modified') ?></th>
                     <td><?= h($account->modified) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Birthday') ?></th>
+                    <td><?= h($account->birthday) ?></td>
+                </tr>
             </table>
         </div>
     </div>

@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $email
  * @property string $password
+ * @property date $birthday
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
@@ -31,6 +32,7 @@ class Account extends Entity
         'password' => true,
         'created' => true,
         'modified' => true,
+        'birthday' => true,
     ];
 
     /**

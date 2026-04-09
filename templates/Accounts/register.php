@@ -18,7 +18,7 @@ echo $this->Html->css("registration.css");
                     echo $this->Form->control('email', ['type' => 'email']);
                     echo $this->Form->control('password', ['type' => 'password']);
                     echo $this->Form->control('confirm password', ['type' => 'password']);
-                    echo $this->Form->control('birthdate', [
+                    echo $this->Form->control('birthday', [
                         'label' => 'Date of birth',
                         'type' => 'date',
                         'value' => new DateTime()
