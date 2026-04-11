@@ -25,6 +25,7 @@ echo $this->Html->css("registration.css");
                     ]);
                     echo $this->Form->control('I agree to be bound by Terms of Service', ['type' => 'checkbox']);
                     echo $this->Form->control('Capcha', ['type' => 'checkbox']);
+                    echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Register')) ?>
