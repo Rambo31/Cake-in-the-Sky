@@ -43,6 +43,9 @@ class AccountsController extends AppController
      */
     public function register()
     {
+        $this->Accounts->addBehavior('Captcha.Captcha');
+        $this->Accounts->addBehavior('Captcha.PassiveCaptcha');
+
         $account = $this->Accounts->newEmptyEntity();
         if ($this->request->is('post')) {
             $account = $this->Accounts->patchEntity($account, $this->request->getData());

@@ -43,10 +43,6 @@ class AccountsTable extends Table
         $this->setDisplayField('email');
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
-
-        //registration capcha behavior
-        $this->addBehavior('Captcha.Captcha');
-        $this->addBehavior('Captcha.PassiveCaptcha');
     }
 
     /**
