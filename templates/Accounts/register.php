@@ -24,18 +24,15 @@ echo $this->Html->css("w3schools-toggle-switch.css");
                         'type' => 'date',
                         'value' => new DateTime()
                     ]);
-                    echo $this->Form->control('accept policy', [
-                        'type' => 'checkbox',
-                        'class' => 'toggle-switch__input',
-                        'label' => [
-                            'class' => 'toggle-switch toggle-switch--mid-size',
-                            'text' => '<span class="toggle-switch__slider"></span>',
-                            'escape' => false
-                        ]
-                    ]);
-                    echo $this->Form->control('I agree to be bound by Terms of Service', ['type' => 'checkbox']);
                     echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
                 ?>
+                <div style="display: flex">
+                    <label class="toggle-switch toggle-switch--mid-size">
+                        <input type="checkbox" class='toggle-switch__input'>
+                        <span class="toggle-switch__slider"></span>
+                    </label>
+                    <label style="margin-left: 1em;">I agree with Terms of Service</label>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Register')) ?>
             <?= $this->Html->link(

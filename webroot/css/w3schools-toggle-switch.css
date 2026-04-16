@@ -41,13 +41,11 @@
   transition: .4s;
 }
 
-/*should I change smth here???*/
-input:checked + .toggle-switch__slider {
+.toggle-switch__input:checked + .toggle-switch__slider {
   background-color: #2196F3;
 }
 
-/*should I change smth here???*/
-input:checked + .toggle-switch__slider:before {
+.toggle-switch__input:checked + .toggle-switch__slider:before {
   -webkit-transform: translateX(2.5em);
   -ms-transform: translateX(2.5em);
   transform: translateX(2.5em);
