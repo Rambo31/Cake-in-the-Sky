@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Account $account
  */
 echo $this->Html->css("registration.css");
+echo $this->Html->css("w3schools-toggle-switch.css");
 ?>
 <div class="row">
     <div class="column column-50">
@@ -22,6 +23,15 @@ echo $this->Html->css("registration.css");
                         'label' => 'Date of birth',
                         'type' => 'date',
                         'value' => new DateTime()
+                    ]);
+                    echo $this->Form->control('accept policy', [
+                        'type' => 'checkbox',
+                        'class' => 'toggle-switch__input',
+                        'label' => [
+                            'class' => 'toggle-switch toggle-switch--mid-size',
+                            'text' => '<span class="toggle-switch__slider"></span>',
+                            'escape' => false
+                        ]
                     ]);
                     echo $this->Form->control('I agree to be bound by Terms of Service', ['type' => 'checkbox']);
                     echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
