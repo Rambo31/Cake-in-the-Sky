@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "617e47b5356aa7320063aae526284491",
+    "content-hash": "8be34b5b86aab9f425a76b18e125c4fc",
     "packages": [
         {
             "name": "cakephp/authentication",
@@ -502,64 +502,6 @@
                 }
             ],
             "time": "2025-12-08T15:06:51+00:00"
-        },
-        {
-            "name": "dereuromark/cakephp-captcha",
-            "version": "2.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "ddfbc497536d6a1bb5d9a54ce68f2b64436fde4f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/ddfbc497536d6a1bb5d9a54ce68f2b64436fde4f",
-                "reference": "ddfbc497536d6a1bb5d9a54ce68f2b64436fde4f",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "^5.1.1",
-                "php": ">=8.2"
-            },
-            "conflict": {
-                "cakephp/migrations": "<4.5"
-            },
-            "require-dev": {
-                "cakephp/migrations": "^5.0.0",
-                "fig-r/psr2r-sniffer": "dev-master",
-                "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Captcha\\": "src/",
-                    "Captcha\\Test\\Fixture\\": "tests/Fixture/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "A CakePHP plugin to integrate captchas.",
-            "homepage": "https://github.com/dereuromark/cakephp-captcha",
-            "keywords": [
-                "cakephp",
-                "captchas",
-                "plugin",
-                "security"
-            ],
-            "support": {
-                "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
-                "source": "https://github.com/dereuromark/cakephp-captcha"
-            },
-            "time": "2026-02-14T01:57:22+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",

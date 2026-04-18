@@ -37,7 +37,5 @@ class AppView extends View
      */
     public function initialize(): void
     {
-        //registration capcha behavior
-        $this->loadHelper('Captcha.Captcha');
     }
 }

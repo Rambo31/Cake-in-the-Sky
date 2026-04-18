@@ -24,7 +24,6 @@ echo $this->Html->css("w3schools-toggle-switch.css");
                         'type' => 'date',
                         'value' => new DateTime()
                     ]);
-                    echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
                 ?>
                 <div style="display: flex">
                     <label class="toggle-switch toggle-switch--mid-size">
