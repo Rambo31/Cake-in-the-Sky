@@ -18,7 +18,9 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                 </legend>
                 <hr class='reg-form__line'>
                 <?php
-                    echo $this->Form->control('email', ['type' => 'email']);
+                    echo $this->Form->control('user_mail', [
+                        'label' => 'Email'
+                    ]);
                     echo $this->Form->control('password', ['type' => 'password']);
                     echo $this->Form->control('confirm password', ['type' => 'password']);
                     echo $this->Form->control('birthday', [

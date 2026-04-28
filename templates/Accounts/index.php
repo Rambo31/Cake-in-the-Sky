@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
+                    <th><?= $this->Paginator->sort('user_mail') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -22,7 +22,7 @@
                 <?php foreach ($accounts as $account): ?>
                 <tr>
                     <td><?= $this->Number->format($account->id) ?></td>
-                    <td><?= h($account->email) ?></td>
+                    <td><?= h($account->user_mail) ?></td>
                     <td><?= h($account->created) ?></td>
                     <td><?= h($account->modified) ?></td>
                     <td class="actions">

@@ -7,11 +7,11 @@
 <div class="row">
     <div class="column column-100">
         <div class="accounts view content">
-            <h3><?= h($account->email) ?></h3>
+            <h3><?= h($account->user_mail) ?></h3>
             <table>
                 <tr>
                     <th><?= __('Email') ?></th>
-                    <td><?= h($account->email) ?></td>
+                    <td><?= h($account->user_mail) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

@@ -22,7 +22,7 @@
             <fieldset>
                 <legend><?= __('Edit Account') ?></legend>
                 <?php
-                    echo $this->Form->control('email');
+                    echo $this->Form->control('user_mail');
                     echo $this->Form->control('password');
                 ?>
             </fieldset>

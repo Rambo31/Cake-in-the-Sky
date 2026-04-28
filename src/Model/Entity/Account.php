@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Account Entity
  *
  * @property int $id
- * @property string $email
+ * @property string $user_mail
  * @property string $password
  * @property date $birthday
  * @property \Cake\I18n\DateTime|null $created
@@ -28,7 +28,7 @@ class Account extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'email' => true,
+        'user_mail' => true,
         'password' => true,
         'created' => true,
         'modified' => true,

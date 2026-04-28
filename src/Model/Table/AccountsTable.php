@@ -40,7 +40,7 @@ class AccountsTable extends Table
         parent::initialize($config);
 
         $this->setTable('accounts');
-        $this->setDisplayField('email');
+        $this->setDisplayField('user_mail');
         $this->setPrimaryKey('id');
         $this->addBehavior('Timestamp');
     }
@@ -53,10 +53,20 @@ class AccountsTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+        //what is the right order for this?
+        //test it
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+        //how exactly it checks the string?
+            ->email('user_mail', false, 'Email format is wrong')
+        //min length can be fooled by white space
+        //min length??
+            ->minLength('user_mail', 3, 'Min length for an email is 3 symbols')
+        //I need max length storage in my db
+            ->maxLength('user_mail', 256, 'You\'ve exceeded email max length')
+        //must-have rule
+            ->requirePresence('user_mail', true, 'Email field is required')
+        //min length + notEmpty can be fooled by '  hh@cc'
+            ->notEmptyString('user_mail', 'Email can\'t be empty');
 
         $validator
             ->scalar('password')
@@ -76,7 +86,8 @@ class AccountsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+        //unique email field
+        $rules->add($rules->isUnique(['user_mail']), ['errorField' => 'user_mail']);
 
         return $rules;
     }
