@@ -68,25 +68,35 @@ class AccountsTable extends Table
             //it just doesnt allow to paste/input more than *num* symbols
             ->maxLength('user_mail', 128, 'Max length for an email is 128 symbols');
 
-        //should contain
-        //at least 1 number
-        //at least one upper case letter
-        //at leat one lower case letter
-//        $validator
-//            //what does this mean
-//            ->scalar('password', 'Password must contain at least 1 number(s)')
-//            //I want in between 8 and 23
-//            ->lengthBetween('password', [8, 23], 'Password length must be between 8 and 23, inclusively')
-//            //is password rule name valid in terms on conventions
-//            ->add('password', 'strict-password', [
-//                'rule' => function ($value, $context) {
-//                },
-//                'message' => 'Password at least must have:\n'
-//            ]);
-//            //create here cause I only have account creation form
-//            //in the future I might consider adding "true"/"update" option
-//            ->requirePresence('password', 'create', 'Password field is required')
-//            ->notEmptyString('password', 'Password can\'t be empty');
+        $validator
+            ->requirePresence('password', true, 'Password field is required')
+            //doesnt allow complex types like objects, arrays, nulls
+            ->scalar('password', 'Password must be of a scalar type')
+            ->lengthBetween('password', [8, 23], 'Password length must be between 8 and 23, inclusively')
+            ->add('password', 'hasLowerCaseLetter', [
+                'rule' => function ($value, $context) {
+                    if (!preg_match('/[a-z]/', $value))
+                        return false;
+                    return true;
+                },
+                'message' => "Password must have at least one lower case letter"
+            ])
+            ->add('password', 'hasUpperCaseLetter', [
+                'rule' => function ($value, $context) {
+                    if (!preg_match('/[A-Z]/', $value))
+                        return false;
+                    return true;
+                },
+                'message' => "Password must have at least one upper case letter"
+            ])
+            ->add('password', 'hasNumber', [
+                'rule' => function ($value, $context) {
+                    if (!preg_match('/\d/', $value))
+                        return false;
+                    return true;
+                },
+                'message' => "Password must have at least one number"
+            ]);
 
         return $validator;
     }
