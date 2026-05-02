@@ -54,34 +54,39 @@ class AccountsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
+            //it just checks if there is a key *name* in validation array (doesn't matter if value is empty or null)
+            ->requirePresence('user_mail', true, 'Email field is required')
+            //email validation in a nutshell
+            //
+            //is string
+            //should I use build in regex or custom
+            //check if str formatted to satisfy regex
+            //additional availability check if *deep* is true
+            //
             //at least f@f.ff
             ->email('user_mail', false, 'Email format is wrong')
-            //min allowed by email rule is 6 symb f@f.ru
-            ->minLength('user_mail', 6, 'Min length for an email is 6 symbols')
-            //I need max length storage in my db
-            ->maxLength('user_mail', 128, 'Max length for an email is 128 symbols')
-            ->requirePresence('user_mail', true, 'Email field is required')
-            ->notEmptyString('user_mail', 'Email can\'t be empty');
+            //it just doesnt allow to paste/input more than *num* symbols
+            ->maxLength('user_mail', 128, 'Max length for an email is 128 symbols');
 
         //should contain
         //at least 1 number
         //at least one upper case letter
         //at leat one lower case letter
-        $validator
-            //what does this mean
-            ->scalar('password', 'Password must contain at least 1 number(s)')
-            //I want in between 8 and 23
-            ->lengthBetween('password', [8, 23], 'Password length must be between 8 and 23, inclusively')
-            //is password rule name valid in terms on conventions
-            ->add('password', 'strict-password', [
-                'rule' => function ($value, $context) {
-                },
-                'message' => 'Password at least must have:\n'
-            ]);
-            //create here cause I only have account creation form
-            //in the future I might consider adding "true"/"update" option
-            ->requirePresence('password', 'create', 'Password field is required')
-            ->notEmptyString('password', 'Password can\'t be empty');
+//        $validator
+//            //what does this mean
+//            ->scalar('password', 'Password must contain at least 1 number(s)')
+//            //I want in between 8 and 23
+//            ->lengthBetween('password', [8, 23], 'Password length must be between 8 and 23, inclusively')
+//            //is password rule name valid in terms on conventions
+//            ->add('password', 'strict-password', [
+//                'rule' => function ($value, $context) {
+//                },
+//                'message' => 'Password at least must have:\n'
+//            ]);
+//            //create here cause I only have account creation form
+//            //in the future I might consider adding "true"/"update" option
+//            ->requirePresence('password', 'create', 'Password field is required')
+//            ->notEmptyString('password', 'Password can\'t be empty');
 
         return $validator;
     }
