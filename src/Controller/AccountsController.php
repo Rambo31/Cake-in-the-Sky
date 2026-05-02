@@ -50,19 +50,19 @@ class AccountsController extends AppController
             if (!$this->request->is('post')) {
                 return;
             }
-            //get token from form POST
-            $hcaptchaToken = $this->request->getData('h-captcha-response');
-            if(!$hcaptchaToken){
-                throw new \Exception('Missing hCaptcha token', 400);
-            }
-            //verify token with hCaptcha API
-            $verificationResult = $this->verifyCaptchaToken($hcaptchaToken, $_SERVER['REMOTE_ADDR']);
-            //decision login
-            //fail
-            if(!$verificationResult[0]){
-                //I also can get additional error codes from $verificationResult[1]
-                throw new \Exception('hCaptcha token verification failed', 403);
-            }
+//            //get token from form POST
+//            $hcaptchaToken = $this->request->getData('h-captcha-response');
+//            if(!$hcaptchaToken){
+//                throw new \Exception('Missing hCaptcha token', 400);
+//            }
+//            //verify token with hCaptcha API
+//            $verificationResult = $this->verifyCaptchaToken($hcaptchaToken, $_SERVER['REMOTE_ADDR']);
+//            //decision login
+//            //fail
+//            if(!$verificationResult[0]){
+//                //I also can get additional error codes from $verificationResult[1]
+//                throw new \Exception('hCaptcha token verification failed', 403);
+//            }
             //success
             $account = $this->Accounts->patchEntity($account, $this->request->getData());
             if ($this->Accounts->save($account)) {

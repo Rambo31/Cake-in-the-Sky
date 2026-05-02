@@ -53,26 +53,35 @@ class AccountsTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
-        //what is the right order for this?
-        //test it
         $validator
-        //how exactly it checks the string?
+            //at least f@f.ff
             ->email('user_mail', false, 'Email format is wrong')
-        //min length can be fooled by white space
-        //min length??
-            ->minLength('user_mail', 3, 'Min length for an email is 3 symbols')
-        //I need max length storage in my db
-            ->maxLength('user_mail', 256, 'You\'ve exceeded email max length')
-        //must-have rule
+            //min allowed by email rule is 6 symb f@f.ru
+            ->minLength('user_mail', 6, 'Min length for an email is 6 symbols')
+            //I need max length storage in my db
+            ->maxLength('user_mail', 128, 'Max length for an email is 128 symbols')
             ->requirePresence('user_mail', true, 'Email field is required')
-        //min length + notEmpty can be fooled by '  hh@cc'
             ->notEmptyString('user_mail', 'Email can\'t be empty');
 
+        //should contain
+        //at least 1 number
+        //at least one upper case letter
+        //at leat one lower case letter
         $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->requirePresence('password', 'create')
-            ->notEmptyString('password');
+            //what does this mean
+            ->scalar('password', 'Password must contain at least 1 number(s)')
+            //I want in between 8 and 23
+            ->lengthBetween('password', [8, 23], 'Password length must be between 8 and 23, inclusively')
+            //is password rule name valid in terms on conventions
+            ->add('password', 'strict-password', [
+                'rule' => function ($value, $context) {
+                },
+                'message' => 'Password at least must have:\n'
+            ]);
+            //create here cause I only have account creation form
+            //in the future I might consider adding "true"/"update" option
+            ->requirePresence('password', 'create', 'Password field is required')
+            ->notEmptyString('password', 'Password can\'t be empty');
 
         return $validator;
     }
@@ -86,8 +95,10 @@ class AccountsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        //unique email field
-        $rules->add($rules->isUnique(['user_mail']), ['errorField' => 'user_mail']);
+        $rules->add($rules->isUnique(['user_mail']), [
+            'errorField' => 'user_mail',
+            'message' => 'This email is already in use'
+        ]);
 
         return $rules;
     }
