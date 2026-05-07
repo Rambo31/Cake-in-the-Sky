@@ -98,6 +98,26 @@ class AccountsTable extends Table
                 'message' => "Password must have at least one number"
             ]);
 
+        $validator
+            ->requirePresence('confirmed_password', true, 'Confirmed password field is required')
+            ->scalar('confirmed_password', 'Confirmed password must be of a scalar type')
+            ->equalToField('confirmed_password', 'password', 'Password and confirmed password must be equal');
+
+        $adultsBirthday = new \DateTime('-18 years');
+        $adultsBirthday->settime(0, 0);
+
+        $validator
+            ->requirePresence('birthday', true, 'Birthday field is required')
+            ->date('birthday', ['ymd'], 'Birthday field format is wrong')
+            ->add('birthday', 'isAdult', [
+                'rule' => function ($value, $context) use($adultsBirthday) {
+                    $usersBirthday = new \DateTime($value);
+                    $usersBirthday->settime(0, 0);
+
+                    return $usersBirthday <= $adultsBirthday;
+                },
+                'message' => "You have to be at least 18 y.o."
+            ]);
         return $validator;
     }
 
