@@ -118,6 +118,11 @@ class AccountsTable extends Table
                 },
                 'message' => "You have to be at least 18 y.o."
             ]);
+        $validator
+            ->requirePresence('accepted_rules', 'create', 'Rules field is required')
+            ->boolean('accepted_rules', 'Rules field must be of a boolean type')
+            ->equals('accepted_rules', true, 'You have to accept our Terms of Service');
+
         return $validator;
     }
 

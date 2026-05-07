@@ -29,6 +29,18 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                         'value' => new DateTime()
                     ]);
                 ?>
+                <!-- I dont like that error msg on checkbox is displayed at the middle of the element -->
+                <div style="display: flex">
+                    <label class="toggle-switch toggle-switch--mid-size">
+                        <?php echo $this->Form->checkbox('accepted_rules', [
+                            'class' => 'toggle-switch__input',
+                            'label' => ''
+                        ])?>
+                        <span class="toggle-switch__slider"></span>
+                    </label>
+                    <label style="margin-left: 1em;">I agree with Terms of Service</label>
+                </div>
+                <!--
                 <div style="display: flex">
                     <label class="toggle-switch toggle-switch--mid-size">
                         <input type="checkbox" class='toggle-switch__input'>
@@ -36,6 +48,7 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                     </label>
                     <label style="margin-left: 1em;">I agree with Terms of Service</label>
                 </div>
+                -->
             </fieldset>
             <div class="h-captcha" data-sitekey="372c53b6-0f12-4fe6-9b94-dc42dc16d902"></div>
             <?= $this->Form->button(__('Register')) ?>
