@@ -30,7 +30,7 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                     ]);
                 ?>
                 <!-- I dont like that error msg on checkbox is displayed at the middle of the element -->
-                <div style="display: flex">
+                <div class='terms-block'>
                     <label class="toggle-switch toggle-switch--mid-size">
                         <?php echo $this->Form->checkbox('accepted_rules', [
                             'class' => 'toggle-switch__input',
@@ -38,7 +38,13 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                         ])?>
                         <span class="toggle-switch__slider"></span>
                     </label>
-                    <label style="margin-left: 1em;">I agree with Terms of Service</label>
+                    <label style="margin-left: 1em;">
+                        I agree with <?php echo $this->Html->link(
+                            'Terms of Service',
+                            'privacies/index',
+                            ['target' => '_blank']
+                        )?>
+                    </label>
                 </div>
                 <!--
                 <div style="display: flex">
@@ -55,13 +61,12 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
             <?= $this->Html->link(
                 'Cancel',
                 '/accounts', //it should redirect to accounts/login later
-                ['class' => '
-                    button
-                    reg-form__btn
+                [
+                    'class' => 'button reg-form__btn
                     reg-form__btn--inverted-classic-colors
-                    reg-form__btn--thickened-border'
-                ]
-            ) ?>
+                    reg-form__btn--thickened-border',
+                    'style' => 'margin-left: 1em;'
+                ])?>
             <?= $this->Form->end() ?>
         </div>
     </div>

@@ -20,3 +20,11 @@
 .reg-form__btn--thickened-border{
     border-width: 2px;
 }
+
+.terms-block{
+    display: flex;
+}
+
+.terms-block > *{
+    margin-bottom: 0;
+}
