@@ -12,7 +12,7 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
     <div class="column column-50">
         <div class="accounts form content reg-form">
             <?= $this->Form->create($account) ?>
-            <fieldset>
+            <fieldset class='reg-form__fieldset'>
                 <legend class='reg-form__legend'>
                     <?= __('Master Account Register') ?>
                 </legend>
@@ -38,7 +38,7 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                         ])?>
                         <span class="toggle-switch__slider"></span>
                     </label>
-                    <label style="margin-left: 1em;">
+                    <label class='terms-block__label--offsetted-left'>
                         I agree with <?php echo $this->Html->link(
                             'Terms of Service',
                             'privacies/index',
@@ -57,17 +57,19 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                 -->
             </fieldset>
             <div class="h-captcha" data-sitekey="372c53b6-0f12-4fe6-9b94-dc42dc16d902"></div>
-            <?= $this->Form->button(__('Register')) ?>
-            <?= $this->Html->link(
-                'Cancel',
-                '/accounts', //it should redirect to accounts/login later
-                [
-                    'class' => 'button reg-form__btn
-                    reg-form__btn--inverted-classic-colors
-                    reg-form__btn--thickened-border',
-                    'style' => 'margin-left: 1em;'
-                ])?>
-            <?= $this->Form->end() ?>
+            <div class="btns-block">
+                <?= $this->Form->button(__('Register')) ?>
+                <?= $this->Html->link(
+                    'Cancel',
+                    '/accounts', //it should redirect to accounts/login later
+                    [
+                        'class' => 'button reg-form__btn
+                        reg-form__btn--inverted-classic-colors
+                        reg-form__btn--thickened-border
+                        reg-form__btn--offsetted-left'
+                    ])?>
+                <?= $this->Form->end() ?>
+            </div>
         </div>
     </div>
 </div>

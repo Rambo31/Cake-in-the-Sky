@@ -1,6 +1,7 @@
 /* translate absolute values to relative onces */
 .reg-form{
 }
+
 .reg-form__legend{
     font-size: 2rem;
 }
@@ -11,20 +12,47 @@
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
+
 .reg-form__btn{
 }
+
 .reg-form__btn--inverted-classic-colors{
     background-color: #fff;
     color: #d33c43;
 }
+
 .reg-form__btn--thickened-border{
     border-width: 2px;
+}
+
+.reg-form__btn--offsetted-left{
+    margin-left: 1em;
+}
+
+.reg-form__fieldset{
+    margin-left: 0;
 }
 
 .terms-block{
     display: flex;
 }
 
+.terms-block__label--offsetted-left{
+    margin-left: 1em;
+}
+
 .terms-block > *{
+    margin-bottom: 0;
+}
+
+div.h-captcha{
+    display:inline-flex;
+    margin-bottom: 1em;
+}
+
+.btns-block{
+}
+
+.btns-block > *{
     margin-bottom: 0;
 }
