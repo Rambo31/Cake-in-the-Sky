@@ -1,0 +1,32 @@
+.terms-article{
+}
+
+.terms-article__new-line{
+    margin-bottom: 1em;
+}
+
+.terms-article__selection{
+}
+
+.terms-article__selection--color-blue{
+    color: blue;
+}
+
+.terms-article__selection--color-purple{
+    color: purple;
+}
+
+.terms-article__selection--color-green{
+    color: green;
+}
+
+.terms-article__selection--color-brown{
+    color: brown;
+}
+
+.terms-article__paragraph{
+}
+
+.terms-article__paragraph--color-black{
+    color:black;
+}
