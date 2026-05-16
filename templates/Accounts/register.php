@@ -9,9 +9,9 @@ echo $this->Html->css("w3schools-toggle-switch.css");
 
 echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, 'defer' => true]);
 ?>
-<div class="row">
+<div class="row reg-form">
     <div class="column column-50">
-        <div class="accounts form content reg-form">
+        <div class="accounts form content">
             <?= $this->Form->create($account) ?>
             <fieldset class='reg-form__fieldset'>
                 <legend class='page__legend'>
@@ -35,7 +35,9 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
                     <label class="toggle-switch toggle-switch--mid-size">
                         <?php echo $this->Form->checkbox('accepted_rules', [
                             'class' => 'toggle-switch__input',
-                            'label' => ''
+                            'label' => '',
+                            //checkbox error msg position fix
+                            'style' => 'display: block;'
                         ])?>
                         <span class="toggle-switch__slider"></span>
                     </label>

@@ -1,5 +1,7 @@
 /* translate absolute values to relative onces */
 .reg-form{
+    /*display: flex;*/
+    justify-content: center;
 }
 
 .reg-form__btn{
