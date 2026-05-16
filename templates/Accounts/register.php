@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Account $account
  */
+echo $this->Html->css("common-page-styles.css");
 echo $this->Html->css("registration.css");
 echo $this->Html->css("w3schools-toggle-switch.css");
 
@@ -13,10 +14,10 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
         <div class="accounts form content reg-form">
             <?= $this->Form->create($account) ?>
             <fieldset class='reg-form__fieldset'>
-                <legend class='reg-form__legend'>
+                <legend class='page__legend'>
                     <?= __('Master Account Register') ?>
                 </legend>
-                <hr class='reg-form__line'>
+                <hr class='page__line'>
                 <?php
                     echo $this->Form->control('user_mail', [
                         'label' => 'Email'

@@ -1,10 +1,6 @@
 .terms-article{
 }
 
-.terms-article__new-line{
-    margin-bottom: 1em;
-}
-
 .terms-article__selection{
 }
 
@@ -25,6 +21,8 @@
 }
 
 .terms-article__paragraph{
+    text-align: justify;
+    margin-top: 1em;
 }
 
 .terms-article__paragraph--color-black{
