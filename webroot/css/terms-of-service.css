@@ -28,3 +28,11 @@
 .terms-article__paragraph--color-black{
     color:black;
 }
+
+.terms-article__list{
+    margin-bottom: 0;
+}
+
+.terms-article__list .terms-article__paragraph:last-child{
+    margin-bottom: 0;
+}

@@ -19,5 +19,8 @@ class PrivaciesController extends AppController
         //I need to show here a welcome page with available list of restrictions, policies, terms of service etc
     }
 
+    public function showEmailConfirmation(){
+    }
+
 }
 

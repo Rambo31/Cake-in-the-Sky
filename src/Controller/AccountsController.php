@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use Cake\Mailer\Mailer;
 
 /**
  * Accounts Controller
@@ -68,7 +69,10 @@ class AccountsController extends AppController
             if ($this->Accounts->save($account)) {
                 $this->Flash->success(__('The account has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect([
+                    'controller' => 'Privacies',
+                    'action' => 'showEmailConfirmation'
+                ]);
             } else {
                 //error 409 "Conflict" here, I guess the error can be due to some unique rules for accounts
                 throw new \Exception('The account could not be saved. Please, try again', 409);
@@ -147,5 +151,13 @@ class AccountsController extends AppController
             return [true, []];
         }
         return [false, $j["error-codes"] ?? []];
+    }
+
+    public function sendConfirmationEmail(){
+        $mailer = new Mailer('default');
+        $mailer->setFrom(['me@example.com' => 'My Site'])
+                ->setTo('you@example.com')
+                ->setSubject('About')
+                ->deliver('My message');
     }
 }

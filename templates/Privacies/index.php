@@ -18,7 +18,7 @@ echo $this->Html->css("terms-of-service.css");
                 End-User Licence Agreement (EULA). If you do not agree with some points of the agreement,
                 You have the right to stop using this resource.
             </div>
-            <ol>
+            <ol class='terms-article__list'>
                 <li class='terms-article__paragraph'>
                     This unofficial server of the
                     <b class='terms-article__selection terms-article__selection--color-brown'>Legend of the Cake</b>
