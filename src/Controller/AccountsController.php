@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use Cake\Mailer\Mailer;
 
 /**
  * Accounts Controller
@@ -11,6 +10,15 @@ use Cake\Mailer\Mailer;
  */
 class AccountsController extends AppController
 {
+    public function initialize(): void {
+        // Always enable the FormProtection component.
+        $this->loadComponent('FormProtection');
+
+        //adding AccountMailer as an event listner
+        //I use this to send confirmation emails
+        $this->Users->getEventManager()->on($this->getMailer('Account'));
+    }
+
     /**
      * Index method
      *
@@ -151,13 +159,5 @@ class AccountsController extends AppController
             return [true, []];
         }
         return [false, $j["error-codes"] ?? []];
-    }
-
-    public function sendConfirmationEmail(){
-        $mailer = new Mailer('default');
-        $mailer->setFrom(['me@example.com' => 'My Site'])
-                ->setTo('you@example.com')
-                ->setSubject('About')
-                ->deliver('My message');
     }
 }
