@@ -24,7 +24,7 @@ class AccountMailerTestCase extends TestCase
         $mailer->send('confirm');
 
         $this->assertMailSentTo('you@example.com');
-        $this->assertMailContainsText('Hello world!');
-        $this->assertMailContainsText('Welcome to CakePHP!');
+        $this->assertMailContainsHtml('Hello world!');
+        $this->assertMailContainsHtml('Welcome to CakePHP!');
     }
 }

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Mailer\MailerAwareTrait;
 /**
  * Accounts Controller
  *
@@ -10,13 +11,15 @@ namespace App\Controller;
  */
 class AccountsController extends AppController
 {
+    use MailerAwareTrait;
+
     public function initialize(): void {
         // Always enable the FormProtection component.
         $this->loadComponent('FormProtection');
 
         //adding AccountMailer as an event listner
         //I use this to send confirmation emails
-        $this->Users->getEventManager()->on($this->getMailer('Account'));
+        $this->Accounts->getEventManager()->on($this->getMailer('Account'));
     }
 
     /**

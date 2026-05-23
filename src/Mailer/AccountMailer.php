@@ -7,11 +7,10 @@ class AccountMailer extends Mailer
 {
     public function confirm(){
         $mailer = new Mailer('default');
-        $mailer->setFrom(['me@example.com' => 'My Site'])
+        $mailer->setEmailFormat('html')
+               ->setFrom(['me@example.com' => 'Cake in the Sky'])
                ->setTo('you@example.com')
                ->setSubject('About');
-        //default template
-        //templates/email/text/confirm.php
     }
 
     public function implementedEvents(): array
