@@ -6,8 +6,7 @@ use Cake\Mailer\Mailer;
 class AccountMailer extends Mailer
 {
     public function confirm(){
-        $mailer = new Mailer('default');
-        $mailer->setEmailFormat('html')
+        $this->setEmailFormat('html')
                ->setFrom(['me@example.com' => 'Cake in the Sky'])
                ->setTo('you@example.com')
                ->setSubject('About');
