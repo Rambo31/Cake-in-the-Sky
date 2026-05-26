@@ -6,10 +6,13 @@ use Cake\Mailer\Mailer;
 class AccountMailer extends Mailer
 {
     public function confirm(){
-        $this->setEmailFormat('html')
-               ->setFrom(['me@example.com' => 'Cake in the Sky'])
-               ->setTo('you@example.com')
-               ->setSubject('About');
+        //I need account object here to access an email
+        $this->emailTransport('gmail')
+             ->setEmailFormat('html')
+             ->setFrom(['reg@cakeinthesky.com' => 'Cake in the Sky Project (No Reply)'])
+         //change to account's email when go IRL
+             ->setTo( env('MY_EMAIL_FOR_TESTING', false) )
+             ->setSubject('Confirm New Account');
     }
 
     public function implementedEvents(): array
