@@ -14,6 +14,8 @@ class AccountsController extends AppController
     use MailerAwareTrait;
 
     public function initialize(): void {
+
+        parent::initialize();
         // Always enable the FormProtection component.
         $this->loadComponent('FormProtection');
 

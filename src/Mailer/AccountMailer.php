@@ -2,12 +2,15 @@
 namespace App\Mailer;
 
 use Cake\Mailer\Mailer;
+use Cake\Event\EventInterface;
+use Cake\Event\EventListenerInterface;
 
 class AccountMailer extends Mailer
+    implements EventListenerInterface
 {
     public function confirm(){
         //I need account object here to access an email
-        $this->emailTransport('gmail')
+        $this->setTransport('gmail')
              ->setEmailFormat('html')
              ->setFrom(['reg@cakeinthesky.com' => 'Cake in the Sky Project (No Reply)'])
          //change to account's email when go IRL

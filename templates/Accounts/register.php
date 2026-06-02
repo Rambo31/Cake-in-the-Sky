@@ -12,7 +12,12 @@ echo $this->Html->script('https://js.hcaptcha.com/1/api.js', ['async' => true, '
 <div class="row reg-form">
     <div class="column column-50">
         <div class="accounts form content">
-            <?= $this->Form->create($account) ?>
+            <?=
+            $this->Form->create($account);
+            //fix for the FormProtection Component error
+            $this->Form->unlockField('h-captcha-response');
+            $this->Form->unlockField('g-recaptcha-response');
+            ?>
             <fieldset class='reg-form__fieldset'>
                 <legend class='page__legend'>
                     <?= __('Master Account Register') ?>
