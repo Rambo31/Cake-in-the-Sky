@@ -7,7 +7,6 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
 /**
  * Accounts Model
  *
@@ -141,10 +140,5 @@ class AccountsTable extends Table
         ]);
 
         return $rules;
-    }
-
-    public function afterSave(Event $event, EntityInterface $entity, ArrayObject $options): void
-    {
-        console.log('Account.afterSave has been fired!');
     }
 }

@@ -18,10 +18,6 @@ class AccountsController extends AppController
         parent::initialize();
         // Always enable the FormProtection component.
         $this->loadComponent('FormProtection');
-
-        //adding AccountMailer as an event listner
-        //I use this to send confirmation emails
-        $this->Accounts->getEventManager()->on($this->getMailer('Account'));
     }
 
     /**
@@ -80,8 +76,9 @@ class AccountsController extends AppController
             //success
             $account = $this->Accounts->patchEntity($account, $this->request->getData());
             if ($this->Accounts->save($account)) {
-                $this->Flash->success(__('The account has been saved.'));
+                $this->getMailer('Account')->send('confirm', [$account]);
 
+                $this->Flash->success(__('The account has been saved.'));
                 return $this->redirect([
                     'controller' => 'Privacies',
                     'action' => 'showEmailConfirmation'
