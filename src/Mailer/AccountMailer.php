@@ -12,7 +12,8 @@ class AccountMailer extends Mailer
         //I need account object here to access an email
         $this->setTransport('gmail')
              ->setEmailFormat('html')
-             ->setFrom(['reg@cakeinthesky.com' => 'Cake in the Sky Project (No Reply)'])
+         //droped 'from' as they say gmail checks if I actually control the domain
+         //->setFrom(['reg@cakeinthesky.com' => 'Cake in the Sky Project (No Reply)'])
          //change to account's email when go IRL
              ->setTo( env('MY_EMAIL_FOR_TESTING', false) )
              ->setSubject('Confirm New Account');
@@ -28,6 +29,9 @@ class AccountMailer extends Mailer
     public function onRegistration(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
         if ($entity->isNew()) {
+            //generate token here
+            //update account with a new token here
+            //then pass it to my confirm method, so I can add it to the message body
             $this->send('confirm');
         }
     }

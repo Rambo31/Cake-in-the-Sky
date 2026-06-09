@@ -22,5 +22,8 @@ class PrivaciesController extends AppController
     public function showEmailConfirmation(){
     }
 
+    public function showEmailConfirmed(){
+    }
+
 }
 
